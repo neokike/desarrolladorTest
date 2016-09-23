@@ -2,6 +2,7 @@ const elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue');
 
+const nodeModulesPath = '../../../node_modules/';
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -15,5 +16,11 @@ require('laravel-elixir-vue');
 
 elixir(mix => {
     mix.sass('app.scss')
-       .webpack('app.js');
+        .scripts([
+            nodeModulesPath + '/angular/angular.min.js',
+            nodeModulesPath + '/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+            nodeModulesPath + '/angular-ui-router/release/angular-ui-router.min.js',
+            nodeModulesPath + '/angular-validation/dist/angular-validation-rule.min.js',
+            nodeModulesPath + '/angular-validation/dist/angular-validation.min.js',
+        ], 'public/js/vendor.js');
 });
