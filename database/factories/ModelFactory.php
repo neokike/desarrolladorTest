@@ -11,13 +11,24 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Trabajador::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'nombre'   => $faker->firstName,
+        'apellido' => $faker->lastName,
+        'email'    => $faker->unique()->safeEmail,
+        'cedula'   => $faker->randomNumber(8),
+        'cargo_id' => 1,
+        'activo'   => $faker->boolean()
+    ];
+});
+
+$factory->define(App\Cargo::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'nombre'   => $faker->name,
+        'descripcion' => $faker->paragraph
     ];
 });

@@ -7,14 +7,14 @@ var app = angular.module('app');
 // $localStorage: para almacenar datos, en este caso los datos del usuario
 //                en sesion tal como el token de usuario
 // $base64: para encriptar datos
-// $localStorage.backend: constante que contiene la ruta del $localStorage.backend
-var injectParams = ['$http', '$q', '$localStorage', '$base64'];
+// : constante que contiene la ruta del 
+var injectParams = ['$http', '$q'];
 
-var factory = function ($http, $q, $localStorage, $base64) {
+var factory = function ($http, $q) {
 
     factory = {};
 
-    // Utilizada para obtener cualquier array desde el $localStorage.backend
+    // Utilizada para obtener cualquier array desde el 
     // url: parametro que especifica el recurso que se desea consumir de la API
     // include: si se desean incluir parametros adicionales
     factory.getAll = function (url, include) {
@@ -31,8 +31,7 @@ var factory = function ($http, $q, $localStorage, $base64) {
         }
 
         // Si no se desea pasar como parametros el token de usuario se comenta la siguiente linea
-        $http.defaults.headers.common['Authorization'] = $localStorage.token;
-        $http.get($localStorage.backend + url + include)
+        $http.get(url + include)
             .success(function (results) {
                 defered.resolve(results);
             })
@@ -57,8 +56,7 @@ var factory = function ($http, $q, $localStorage, $base64) {
 
         url = url + "/";
 
-        $http.defaults.headers.common['Authorization'] = $localStorage.token;
-        $http.get($localStorage.backend + url + id + include)
+        $http.get(url + id + include)
             .success(function (results) {
                 defered.resolve(results);
             })
@@ -77,8 +75,7 @@ var factory = function ($http, $q, $localStorage, $base64) {
 
         url = url + "/";
 
-        $http.defaults.headers.common['Authorization'] = $localStorage.token;
-        $http.delete($localStorage.backend + url + id)
+        $http.delete(url + id)
             .success(function (status) {
                 defered.resolve(status.data);
                 //project.id = results.data.id;
@@ -97,8 +94,7 @@ var factory = function ($http, $q, $localStorage, $base64) {
         var defered = $q.defer();
         var promise = defered.promise;
 
-        $http.defaults.headers.common['Authorization'] = $localStorage.token;
-        $http.delete($localStorage.backend + url + '/id/' + ids)
+        $http.delete(url + '/id/' + ids)
             .success(function (status) {
                 defered.resolve(status.data);
                 //project.id = results.data.id;
@@ -118,8 +114,7 @@ var factory = function ($http, $q, $localStorage, $base64) {
         var defered = $q.defer();
         var promise = defered.promise;
 
-        $http.defaults.headers.common['Authorization'] = $localStorage.token;
-        $http.post($localStorage.backend + url, object)
+        $http.post(url, object)
             .success(function (results) {
                 defered.resolve(results);
 
@@ -138,8 +133,7 @@ var factory = function ($http, $q, $localStorage, $base64) {
         var defered = $q.defer();
         var promise = defered.promise;
 
-        $http.defaults.headers.common['Authorization'] = $localStorage.token;
-        $http.post($localStorage.backend + url, object)
+        $http.post(url, object)
             .success(function (results) {
                 defered.resolve(results);
 
@@ -160,8 +154,7 @@ var factory = function ($http, $q, $localStorage, $base64) {
 
         url = url + "/";
 
-        $http.defaults.headers.common['Authorization'] = $localStorage.token;
-        $http.put($localStorage.backend + url + id, object)
+        $http.put(url + id, object)
             .success(function (results) {
                 defered.resolve(results);
 
@@ -182,7 +175,7 @@ var factory = function ($http, $q, $localStorage, $base64) {
 
         formData.append("file", file);
 
-        return $http.post($localStorage.backend + url, formData, {
+        return $http.post(url, formData, {
             headers: {
                 "Content-type": undefined
             },

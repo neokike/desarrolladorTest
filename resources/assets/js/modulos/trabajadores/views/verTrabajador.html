@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1>
+            {{verVm.editar?'Editar':'Nuevo'}}
+            <small>Trabajador</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-users"></i> Trabajadores
+            </li>
+            <li class="active">
+                <i class="fa {{verVm.editar?'fa-pencil':'fa-plus'}}"></i> {{verVm.editar?'Editar':'Nuevo'}}
+
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">{{verVm.editar?'Editar':'Nuevo'}} Trabajador</div>
+    <div class="panel-body">
+        <form name="trabajadorForm" class="form">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="cedula" class="control-label">Cédula</label>
+                        <input name="cedula" type="text" id="cedula" validator="required,cedula,maxlength=9"
+                               class="form-control"
+                               ng-model="verVm.trabajador.cedula"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="nombre" class="control-label">Nombre</label>
+                        <input name="nombre" type="text" id="nombre" validator="required,maxlength=100"
+                               class="form-control"
+                               ng-model="verVm.trabajador.nombre"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="apellido" class="control-label">Apellido</label>
+                        <input name="apellido" type="text" id="apellido" validator="required,maxlength=100"
+                               class="form-control"
+                               ng-model="verVm.trabajador.apellido"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="nombre" class="control-label">Email</label>
+                        <input name="email" id="email" type="email" validator="required,email" class="form-control"
+                               ng-model="verVm.trabajador.email"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="cargo" class="control-label">Cargo</label>
+                        <select name="cargo" class="form-control" id="cargo"
+                                ng-options="cargo.id as cargo.nombre for cargo in verVm.cargos"
+                                ng-model="verVm.trabajador.cargo_id" validator="required">
+                            <option value="">Seleccione un cargo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="verVm.trabajador.activo"> Activo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div class="form-group">
+                        <a class="btn btn-warning" ui-sref="trabajadores.listar">
+                            <i class="fa fa-arrow-circle-left"></i>
+                            Atras
+                        </a>
+                        <button class="btn btn-danger" ng-click="verVm.eliminar()" ng-if="verVm.editar"
+                                ng-disabled="verVm.procesando">
+                            <i class="fa fa-circle-o-notch fa-spin" ng-if="verVm.procesando"></i>
+                            <i class="fa fa-trash"></i>
+                            Eliminar
+                        </button>
+                        <button class="btn btn-success" validation-submit="trabajadorForm" ng-click="verVm.guardar()"
+                                ng-disabled="verVm.procesando">
+                            <i class="fa fa-circle-o-notch fa-spin" ng-if="verVm.procesando"></i>
+                            <i class="fa fa-save"></i>
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

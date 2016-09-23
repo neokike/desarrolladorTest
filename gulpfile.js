@@ -24,13 +24,16 @@ elixir(mix => {
         .scripts([
             nodeModulesPath + '/jquery/dist/jquery.js',
             nodeModulesPath + '/datatables.net/js/jquery.dataTables.js',
+            nodeModulesPath + '/datatables.net-select/js/dataTables.select.js',
             nodeModulesPath + '/angular/angular.js',
+            nodeModulesPath + '/angular-sanitize/angular-sanitize.js',
             nodeModulesPath + '/bootstrap-sass/assets/javascripts/bootstrap.js',
             nodeModulesPath + '/angular-ui-router/release/angular-ui-router.js',
             nodeModulesPath + '/angular-validation/dist/angular-validation-rule.js',
             nodeModulesPath + '/angular-validation/dist/angular-validation.js',
             nodeModulesPath + '/angular-datatables/dist/angular-datatables.js',
             nodeModulesPath + '/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js',
+            nodeModulesPath + '/angular-datatables/dist/plugins/select/angular-datatables.select.min.js',
             nodeModulesPath + '/angular-toastr/dist/angular-toastr.tpls.js',
         ], 'public/js/vendor.js')
         .scripts([
@@ -38,11 +41,10 @@ elixir(mix => {
             'app.config.js',
             'app.routes.js',
             'common/services/apiService.js',
-            'modulos/trabajadores/controllers/crearTrabajadoresCtrl.js',
-            'modulos/trabajadores/controllers/listarTrabajadoresCtrl.js',
-            'modulos/trabajadores/controllers/editarTrabajadoresCtrl.js',
+            'modulos/**/*.js',
         ], 'public/js/app.js')
-        .copy('resources/assets/js/modulos/trabajadores/views', 'public/html');
+        .copy('resources/assets/js/modulos/*/views', 'public/html')
+        .copy('resources/assets/js/libs/datatables/localization/es.json', 'public/js');
 
 
 });

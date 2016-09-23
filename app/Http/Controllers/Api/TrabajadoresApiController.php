@@ -20,6 +20,7 @@ class TrabajadoresApiController extends Controller
     public function store(GuardarTrabajador $request)
     {
         $datos = $request->all();
+        $datos['activo'] = $request->get('activo') ?: false;
         $trabajador = Trabajador::create($datos);
 
         return $this->respondWithArray(['success' => 'El trabajador fue creado exitosamente'], 'data');
@@ -28,7 +29,7 @@ class TrabajadoresApiController extends Controller
     public function show($id)
     {
         try {
-            $trabajador = Trabajador::find($id);
+            $trabajador = Trabajador::findOrFail($id);
             return $this->respondWithArray($trabajador, 'data');
         } catch (ModelNotFoundException $e) {
             return $this->respondWithErrorArray(['mensaje' => 'El trabajador no existe'], 'error');
@@ -39,8 +40,9 @@ class TrabajadoresApiController extends Controller
     public function update(ActualizarTrabajador $request, $id)
     {
         $datos = $request->all();
+        $datos['activo'] = $request->get('activo') ?: false;
         try {
-            $trabajador = Trabajador::find($id)->update($datos);
+            $trabajador = Trabajador::findOrFail($id)->update($datos);
         } catch (ModelNotFoundException $e) {
             return $this->respondWithErrorArray(['mensaje' => 'El trabajador no existe'], 'error');
         }
@@ -53,7 +55,7 @@ class TrabajadoresApiController extends Controller
         $errores = collect();
         foreach ($ids as $id) {
             try {
-                $trabajador = Trabajador::find($id)->delete();
+                $trabajador = Trabajador::findOrFail($id)->delete();
             } catch (ModelNotFoundException $e) {
                 $errores->push($id);
             }
@@ -67,5 +69,15 @@ class TrabajadoresApiController extends Controller
 
     }
 
+    public function toggleActivacion($id)
+    {
+        try {
+            $trabajador = Trabajador::findOrFail($id);
+            $trabajador->activo = !$trabajador->activo;
+            $trabajador->save();
+        } catch (ModelNotFoundException $e) {
+            return $this->respondWithErrorArray(['mensaje' => 'El trabajador no existe'], 'error');
+        }
+    }
 
 }

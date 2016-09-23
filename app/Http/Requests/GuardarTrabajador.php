@@ -24,11 +24,19 @@ class GuardarTrabajador extends FormRequest
     public function rules()
     {
         return [
-            'nombre'   => 'required,max:100',
-            'apellido' => 'required,max:100',
-            'email'    => 'required,email',
+            'nombre'   => 'required|max:100',
+            'apellido' => 'required|max:100',
+            'email'    => 'required|email',
             'cargo_id' => 'required',
-            'cedula'   => 'required,max:8,unique:trabajadores,cedula',
+            'cedula'   => 'required|max:9|unique:trabajadores,cedula',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'cedula.unique'     => 'Esta cédula ya se encuentra registrada, verifique antes de continuar.',
+            'cargo_id.required' => 'El cargo es un campo requerido',
         ];
     }
 }

@@ -1,10 +1,14 @@
 var app = angular.module('app')
-    .config(['$validationProvider',
-        function ($validationProvider) {
+    .config(['$validationProvider', 'toastrConfig',
+        function ($validationProvider, toastrConfig) {
+
+            angular.extend(toastrConfig, {
+                positionClass: 'toast-bottom-right',
+            });
 
             $validationProvider.showSuccessMessage = false;
             $validationProvider.setErrorHTML(function (msg) {
-                return "<div> <label class=\"control-label has-error\">" + msg + "</label></div>";
+                return "<div> <label class=\"control-label text-danger\">" + msg + "</label></div>";
             });
 
             $validationProvider.setDefaultMsg({
@@ -20,19 +24,18 @@ var app = angular.module('app')
                     error: 'El campo debe contener menos caracteres',
                     success: 'Thanks!'
                 },
-                number: {
-                    error: 'Debe ser un numero positivo'
+                email: {
+                    error: 'El formato del email es incorrecto'
                 }
             });
 
 
             $validationProvider.setExpression({
-                requiredorzero: function (value) {
-                    return value === 0 ? true : !!value;
-                },
+                cedula: /^^[[V|E|J|G]\d\d\d\d\d\d\d?\d?]{0,9}$/,
+
             }).setDefaultMsg({
-                requiredorzero: {
-                    error: 'Campo requerido',
+                cedula: {
+                    error: 'El formato de la cedula es incorrecto debe ser V|E|J|G00000000',
                 },
             });
         }
@@ -40,4 +43,4 @@ var app = angular.module('app')
     .run(['$rootScope',
         function ($rootScope) {
 
-    }]);
+        }]);

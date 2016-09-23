@@ -1,9 +1,10 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 // Variables
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "variables";
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "datatable";
 
 /*!
  * Start Bootstrap - SB Admin (http://startbootstrap.com/)
@@ -235,6 +236,13 @@ ul.alert-dropdown {
   color: #df8a13;
 }
 
-.dropdown-caret{
+.dropdown-caret {
   margin-top: 5px;
 }
+
+.actions-btn {
+  .btn {
+    margin-bottom: 5px;
+  }
+}
+

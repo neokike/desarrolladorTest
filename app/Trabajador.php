@@ -7,7 +7,7 @@ class Trabajador extends Model
 {
     protected $table = 'trabajadores';
 
-    protected $fillable = ['cedula', 'nombre', 'apellido', 'email', 'activo'];
+    protected $fillable = ['cedula', 'nombre', 'apellido', 'email', 'activo', 'cargo_id'];
 
     protected $casts = [
         'activo' => 'boolean',

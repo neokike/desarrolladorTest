@@ -4,7 +4,7 @@
 @endsection
 @section('head')
     @parent
-    <link rel="stylesheet" href="{{asset('css/dataTables.css')}}">
+    <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <script src="https://use.fontawesome.com/8ceb8e6639.js"></script>
 @endsection
 

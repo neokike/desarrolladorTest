@@ -8,4 +8,6 @@ angular.module('app', [
     'validation.rule',
     'datatables',
     'datatables.bootstrap',
+    'datatables.select',
+    'ngSanitize'
 ]);

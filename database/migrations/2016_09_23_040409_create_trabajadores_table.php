@@ -16,7 +16,7 @@ class CreateTrabajadoresTable extends Migration
         Schema::create('trabajadores', function ($table) {
             $table->increments('id');
             $table->integer('cargo_id')->unsigned();
-            $table->string('cedula', 8)->unique();
+            $table->string('cedula', 9)->unique();
             $table->string('nombre', 100);
             $table->string('apellido', 100);
             $table->string('email');
