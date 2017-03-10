@@ -1,4 +1,4 @@
-# Prueba Desarrollador Ocean Group  
+# Prueba Desarrollador
 
 Pequeño proyecto que consiste en 2 tareas, un Crud básico y la otra es un algoritmo de ordenamiento y presentación de data en forma de árbol.
 
